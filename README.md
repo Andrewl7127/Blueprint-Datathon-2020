@@ -30,8 +30,10 @@ To further our hypothesis that the aforementioned sociopolitical factors are cor
 
 **Conclusion**
 
-At the end of the day, by addressing these predictors and analyzing trends on either a county or state level, we can figure out what factors play into COVID-19 cases and deaths, where potential hotspots might arise, and what steps should be taken to protect our fellow Americans.
+At the end of the day, we faced quite a few challenges along the way. One challenge was standardizing the datasets to have the same unique geographic identifiers (FIPS codes). When initially plotting our maps, we had multiple states missing data. After backtracking and looking at our geographic identifiers, we realized there were mislabeled FIPS codes due to missing leading zeros and created a function to properly identify and alter any inaccurate FIPS codes. Another challenge was matching data that was measured on different levels (state, county), which was solved through grouping and aggregation. 
 
+Through the Blueprint Datathon, we developed skills using multiple technologies such as Python, R, and web application frameworks. After hours of wrestling with data cleaning and preprocessing, we realized the importance of data validity and quality. In terms of originality, we looked at our data in broad strokes. When taking on this task, we specifically wanted to use the entirety of the data despite the large size of the SafeGraph data (24 GB). Additionally, we wanted to take an objective perspective by letting the data guide our findings through intensive exploratory data analysis and visualizations. Finally, we wanted to apply machine learning and use its findings to complement our predictions. 
+At the end of the day, by addressing these predictors and analyzing trends on either a county or state level, we can figure out what factors play into COVID-19 cases and deaths, where potential hotspots might arise, and what steps should be taken to protect our fellow Americans.
 
 **Try it out:** https://blueprint-datathon.herokuapp.com/
 
