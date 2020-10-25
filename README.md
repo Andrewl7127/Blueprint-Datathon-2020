@@ -1,14 +1,14 @@
 # Exploring Big Trends COVID-19 (Vertical 3)
 
-#Abstract
+## Abstract
 
 With one of the highest infection rates globally, the United States has been struggling to find a healthy balance between practicing social distancing and maintaining daily activity. As a result, certain measures must be taken to identify COVID-19 spread and mitigate COVID-19 pockets across the nation. To do so, we looked at various metrics on a county-by-county basis so as to best identify at-risk areas. The metrics we used include, but are not limited to, case/death counts, time spent in quarantine, and demographic factors (i.e. race, marital status, etc.). Our general hypothesis is that counties that do not respect social distancing policies have witnessed and/or will experience dramatic increases in COVID-19 cases. It is also worth mentioning that more population-dense regions will likely take longer to recover but we may see fewer new cases per capita.
 
-#Methodology
+## Methodology
 
 Using the provided SafeGraph data, Open Census data, County/State-level intervention data, and Historical Cases data, we sought to understand the relationship between COVID-19 and potential sociopolitical predictors. After cleaning, preprocessing, and aggregating the data, we created multiple visualizations, including interactive maps, to analyze the trends in how different variables such as travel time, percent of time spent in quarantine, and device count have varied over across U.S. counties over the course of the COVID-19 pandemic and their correlation to the increasing number of COVID cases and deaths. Finally, to further identify key socio-political predictors in COVID-19 cases, we trained a random forest model which can be found here [Random Forest Model](https://github.com/Andrewl7127/BlueprintDatathon/blob/main/Modeling.ipynb). For the sake of user-friendliness and potential further research, we hosted all our visualizations on a [web application](https://blueprint-datathon.herokuapp.com/) built through Streamlit and Heroku - a development-friendly cloud platform. 
 
-#Discussion
+## Discussion
 
 One of the first things that came to mind when understanding pandemic spread was to what degree each county enforced and respected common-sense quarantine procedures. To do so we looked at the ‘Travel Time’ - the distance traveled outside one’s home over the last year. Similarly, we wanted to see the ‘% Time in Quarantine’ of each county (i.e. the percentage of time in which people respected quarantine procedures). Looking at the map pertaining to ‘Travel Time,’ it is worth noting that people generally traveled far less after the inception of the pandemic and this trend continues today - with only a handful of counties who have residents frequently exiting/entering county lines. This pattern likely can be attributed to the fact that people no longer cross larger distances or travel extensively due to the heavy restrictions enforced by the airline and other transportation industries. The travel time overall shows a consistent decreasing behavior and by itself does not seem to have a noticeable impact on COVID cases or deaths.
 
@@ -26,7 +26,7 @@ Furthermore, policy also plays a large part in public behavior. In order to quan
 
 To further our hypothesis that the aforementioned sociopolitical factors are correlated with COVID-19 cases and death, we trained a random forest model to predict state per-capita COVID-19 cases based on recent state demographics and policies related to COVID-19. We decided on using a random forest model since random forests work well with nonlinear data, are robust to outliers, are resistant against overfitting, and handle various forms of data well. We created three models (base, best RandomSearchCV, and best GridSearchCV), and after preprocessing and hyperparameter tuning, our best model achieved 81% accuracy, strongly suggesting that there is a correlation between sociopolitical factors and COVID-19 cases. We then extracted the feature importances for each of the three models, and surprisingly, racial demographics played a large part which might point to the fact new studies suggest COVID-19 [disproportionately impacts people of African American and Asian heritage](https://www.hopkinsmedicine.org/health/conditions-and-diseases/coronavirus/covid19-racial-disparities). Other indicative features included face mask requirements and the proportion of married individuals, further supporting our hypothesis that COVID-19 cases were indeed a factor of social distancing policy and marital status. One potential shortcoming of the models, however, was the failure to account for time (i.e. who implemented policies first) as well as the limited data due to aggregation. This can be solved by getting a more specific dataset.
 
-#Conclusion
+## Conclusion
 
 At the end of the day, by addressing these predictors and analyzing trends on either a county or state level, we can figure out what factors play into COVID-19 cases and deaths, where potential hotspots might arise, and what steps should be taken to protect our fellow Americans.
 
