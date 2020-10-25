@@ -1,5 +1,7 @@
 # Exploring Big Trends COVID-19 (Vertical 3)
 
+This report provides an analysis and visualizations regarding the correlation between geographic, demographic, social, and political trends and COVID-19 cases and deaths.
+
 **Abstract**
 
 With one of the highest infection rates globally, the United States has been struggling to find a healthy balance between practicing social distancing and maintaining daily activity. As a result, certain measures must be taken to identify COVID-19 spread and mitigate COVID-19 pockets across the nation. To do so, we looked at various metrics on a county-by-county basis so as to best identify at-risk areas. The metrics we used include, but are not limited to, case/death counts, time spent in quarantine, and demographic factors (i.e. race, marital status, etc.). Our general hypothesis is that counties that do not respect social distancing policies have witnessed and/or will experience dramatic increases in COVID-19 cases. It is also worth mentioning that more population-dense regions will likely take longer to recover but we may see fewer new cases per capita.
