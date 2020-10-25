@@ -37,4 +37,3 @@ Through the Blueprint Datathon, we developed skills using multiple technologies 
 At the end of the day, by addressing these predictors and analyzing trends on either a county or state level, we can figure out what factors play into COVID-19 cases and deaths, where potential hotspots might arise, and what steps should be taken to protect our fellow Americans.
 
 **Try it out:** https://blueprint-datathon.herokuapp.com/
-
