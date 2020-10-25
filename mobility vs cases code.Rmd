@@ -1,0 +1,91 @@
+---
+title: "Untitled"
+author: "William Foote"
+date: "10/24/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+# for (i in seq_len(7)) {
+#   hist(ds5_new[, i + 11])
+# }
+```
+
+```{r}
+# for (i in seq_len(7)) {
+#   plot(log(ds5_new[, i + 1]) ~ ds5_new[, i+11])
+# }
+# 
+# summary(lm(ds5_new[, 1 + 7] ~ ds5_new[, 7 + 11]))
+```
+
+
+```{r}
+last_dates <-
+  c("2020-03-31", "2020-04-30", "2020-05-31",
+    "2020-06-30", "2020-07-31", "2020-08-31",
+    "2020-09-30", "2020-10-22")
+cases <- data.frame(matrix(rep(0, times = 55 * 16), nrow = 55))
+
+ds5_mar <- ds5 %>% filter(date == last_dates[1]) %>% distinct(state, cases_y)
+ds5_apr <- ds5 %>% filter(date == last_dates[2]) %>% distinct(state, cases_y)
+ds5_may <- ds5 %>% filter(date == last_dates[3]) %>% distinct(state, cases_y)
+ds5_june <- ds5 %>% filter(date == last_dates[4]) %>% distinct(state, cases_y)
+ds5_july <- ds5 %>% filter(date == last_dates[5]) %>% distinct(state, cases_y)
+ds5_august <- ds5 %>% filter(date == last_dates[6]) %>% distinct(state, cases_y)
+ds5_sep <- ds5 %>% filter(date == last_dates[7]) %>% distinct(state, cases_y)
+ds5_oct <- ds5 %>% filter(date == last_dates[8]) %>% distinct(state, cases_y)
+
+ds5_cases <- cbind(ds5_mar[1], ds5_apr[, 2] - ds5_mar[, 2],
+ds5_may[, 2] - ds5_apr[, 2],
+ds5_june[, 2] - ds5_may[, 2],
+ds5_july[, 2] - ds5_june[, 2],
+ds5_august[, 2] - ds5_july[, 2],
+ds5_sep[, 2] - ds5_august[, 2],
+ds5_oct[, 2] - ds5_sep[, 2])
+names(ds5_cases)[2:8] <- month.name[4:10]
+ds5_cases <- ds5_cases[-c(12, 37, 42, 50) ,]
+
+library(tidyverse)
+ds5_cases <- ds5_cases %>% gather(`April`, `May`, `June`, `July`, `August`, `September`, `October`, key = "month", value = "new_cases")
+
+test <- ds1 %>% filter(state_name != "") %>% group_by(state_name, date_range_end) %>% summarise(mean(median_percentage_time_home)) 
+test$state_name <- str_to_title(test$state_name)
+names(test)[3] <- "median_home"
+
+
+test_rm_noise <- test %>% mutate(date_range_end = month(date_range_end)) %>% group_by(state_name, date_range_end) %>% summarise(mean(median_home))
+
+mobility <- test_rm_noise
+names(mobility)[3] <- "median_home"
+mobility <- mobility[mobility$date_range_end > 3, ]
+mobility <- mobility %>% mutate(date_range_end = date_range_end - 3)
+
+par(mfrow = c(5, 2), mar = c(1, 1, 1, 1))
+
+for(i in seq_len(51)) {
+  plot(median_home ~ date_range_end,
+       data = mobility[mobility$state_name == unique(mobility$state_name)[i], ],
+       type = "l",
+       col = colors()[500 + i],
+       main = unique(mobility$state_name)[i],
+       lwd = 2, 
+       cex.main = .7,
+       cex.axis = .7)
+  plot(ds5_cases[ds5_cases$state == unique(ds5_cases$state)[i], 3],
+       type = "l",
+       col = colors()[500 + i],
+       lty = 2,
+       main = unique(mobility$state_name)[i],
+       lwd = 2,
+       cex.main = .7,
+       cex.axis = .7)
+}
+
+```
+
